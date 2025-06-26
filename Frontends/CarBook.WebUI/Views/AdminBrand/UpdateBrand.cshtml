@@ -1,0 +1,42 @@
+﻿@model UpdateBrandViewModel
+@{
+    ViewData["Title"] = "CreateBrand";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Yeni Marka Oluştur</h4>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <form asp-action="UpdateBrand" method="post">
+                                <input type="hidden" asp-for="BrandToUpdate.BrandId"/>
+                                <div class="form-group mb-3">
+                                    <label for="Name">Marka Adı</label>
+                                    <input asp-for="BrandToUpdate.Name" value="@Model.BrandToUpdate.Name" type="text" class="form-control" id="Name" placeholder="Marka adı girin">
+                                </div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Markayı Kaydet</button>
+                            </form>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+}

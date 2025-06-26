@@ -1,0 +1,65 @@
+﻿@model CategoryViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Banner Listesi</h4>
+                            <div class="table-responsive">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Kategori Adı</th>
+                                            <th>Kategori Blogları</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var category in Model.Categories)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row">@count</th>
+                                                <td>@category.Name</td>
+                                                <td><a href="/Admin/Category/DeleteCategory/@category.CategoryId" class="btn btn-danger">Sil</a></td>
+                                                <td><a href="/Admin/Category/UpdateCategory/@category.CategoryId" class="btn btn-success">Güncelle</a></td>
+                                                <td><a href="/Admin/Category/UpdateCategory/@category.CategoryId" class="btn btn-dark">Blogları Görüntüle</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <a href="/Admin/Category/CreateCategory" class="btn btn-outline-primary">Yeni Kategori Oluştur</a>
+                            </div>
+
+                        </div>
+                        <!-- end card-body-->
+                    </div>
+                    <!-- end card -->
+
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+}
+

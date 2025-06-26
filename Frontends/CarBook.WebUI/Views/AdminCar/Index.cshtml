@@ -1,0 +1,78 @@
+﻿@model CarViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Araba Listesi</h4>
+                            <div class="table-responsive">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Marka</th>
+                                            <th>Model</th>
+                                            <th>Vites</th>
+                                            <th>Km</th>
+                                            <th>Sil</th>
+                                            <th>Güncelle</th>
+                                            <th>Detaylar</th>
+                                            <th>Sitede Gör</th>
+                                            <th>Fiyat Bilgileri</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var car in Model.Cars)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row">@count</th>
+                                                <td>@car.BrandName</td>
+                                                <td>@car.Model</td>
+                                                <td>@car.Transmission</td>
+                                                <td>@car.Km</td>
+                                                <td><a href="/AdminCar/DeleteCar/@car.CarId" class="btn btn-outline-danger">Sil</a></td>
+                                                <td><a href="/AdminCar/UpdateCar/@car.CarId" class="btn btn-outline-success">Güncelle</a></td>
+                                                <td><a href="/CarList/CarDetail/@car.CarId" class="btn btn-outline-info">Detaylar</a></td>
+                                                <td><a href="/CarList/CarDetail/@car.CarId" class="btn btn-outline-warning">Sitede Gör</a></td>
+                                                <td><a href="/CarList/CarDetail/@car.CarId" class="btn btn-outline-secondary">Fiyat Bilgileri</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <a href="/AdminCar/CreateCar" class="btn btn-outline-primary">Yeni Araç Oluştur</a>
+                            </div>
+
+                        </div>
+                        <!-- end card-body-->
+                    </div>
+                    <!-- end card -->
+
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,37 @@
+﻿@model AuthorDto
+@{
+    ViewData["Title"] = "CreateAuthor";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Özellik Oluştur</h4>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form asp-action="CreateAuthor" method="post">
+                            <div class="form-group mb-3">
+                                <label for="Name">Yazar Adı</label>
+                                <input asp-for="Name" type="text" class="form-control" id="Name" placeholder="Yazar adı girin">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="ImageUrl">Resim Url</label>
+                                <input asp-for="ImageUrl" type="text" class="form-control" id="ImageUrl" placeholder="Resim url girin">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Description">Yazar Açıklaması</label>
+                                <textarea asp-for="Description" type="text" class="form-control" id="Description" placeholder="Yazar açıklması girin"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Yazarı Kaydet</button>
+                        </form>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
+</div>
+

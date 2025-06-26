@@ -1,0 +1,21 @@
+﻿@model CategoryViewModel
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+    <div class="sidebar-box ftco-animate">
+        <div class="categories">
+            <h3>Kategoriler</h3>
+            @foreach (var category in Model.Categories)
+            {
+                <li><a href="#">@category.Name<span>(0)</span></a></li>
+            }
+        </div>
+    </div>
+}
+

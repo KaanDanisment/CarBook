@@ -1,0 +1,56 @@
+﻿@model UpdateBannerViewModel
+@{
+    ViewData["Title"] = "UpdateBanner";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Banner Güncelle</h4>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <form asp-action="UpdateBanner" method="post">
+                                <input asp-for="BannerToUpdate.BannerId" type="hidden" />
+                                <div class="form-group mb-3">
+                                    <label for="Title">Banner Başlığı</label>
+                                    <input asp-for="BannerToUpdate.Title" value="@Model.BannerToUpdate.Title" type="text" class="form-control" id="Title" placeholder="BAnner başlığı girin">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="Description">Açıklama</label>
+                                    <input asp-for="BannerToUpdate.Description" value="@Model.BannerToUpdate.Description" type="text" class="form-control" id="Description" placeholder="Açıklama girin">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="VideoDescription">Video Açıklaması</label>
+                                    <input asp-for="BannerToUpdate.VideoDescription" value="@Model.BannerToUpdate.VideoDescription" type="text" class="form-control" id="VideoDescription" placeholder="Video açıklması girin">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="VideoUrl">Vide Url</label>
+                                    <input asp-for="BannerToUpdate.VideoUrl" value="@Model.BannerToUpdate.VideoUrl" type="text" class="form-control" id="VideoUrl" placeholder="Video url girin">
+                                </div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Banner'ı Kaydet</button>
+                            </form>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+}
+
+
+

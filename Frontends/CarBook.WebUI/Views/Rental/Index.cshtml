@@ -1,0 +1,49 @@
+﻿@model RentalCarsViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row">
+                @foreach (var car in Model.AvailableRentalCars)
+                {
+                    <div class="col-md-4">
+                        <div class="car-wrap rounded ftco-animate">
+                            <div class="img rounded d-flex align-items-end" style="background-image: url(@car.CoverImageUrl);"></div>
+                            <div class="text">
+                                <h2 class="mb-0"><a href="car-single.html">@car.Brand @car.Model</a></h2>
+                                <div class="d-flex flex-column mb-3">
+                                    <p class="text-danger">@car.CalculatedPrice</p>
+                                </div>
+                                <p class="d-flex mb-0 d-block">
+                                    <form asp-action="RedirectAction" method="post">
+                                        <input name="CarId" type="hidden" value="@car.CarId" />
+                                        <input name="RentDate" type="hidden" value="@Model.RentalToCreate.RentDate" />
+                                        <input name="ReturnDate" type="hidden" value="@Model.RentalToCreate.ReturnDate" />
+                                        <input name="RentTime" type="hidden" value="@Model.RentalToCreate.RentTime" />
+                                        <input name="ReturnTime" type="hidden" value="@Model.RentalToCreate.ReturnTime" />
+                                        <input name="PickupLocationId" type="hidden" value="@Model.RentalToCreate.PickupLocationId" />
+                                        <input name="DropoffLocationId" type="hidden" value="@Model.RentalToCreate.DropoffLocationId" />
+                                        <input name="TotalPrice" type="hidden" value="@car.CalculatedPrice" />
+                                        <button type="submit" class="btn btn-primary py-2 mr-1">Hemen Kirala</button>
+                                    </form>
+                                    <a href="car-single.html" class="btn btn-secondary py-2 ml-1">Detaylar</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}

@@ -1,0 +1,56 @@
+﻿@model UpdateFooterAddressViewModel
+@{
+    ViewData["Title"] = "UpdateFooterAddress";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Yeni Fiyat Periyodu Oluştur</h4>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <form asp-action="UpdateFooterAddress" method="post">
+                                <input asp-for="FooterAddressToUpdate.FooterAddressId" type="hidden"/>
+                                <div class="form-group mb-3">
+                                    <label for="Address">Adres</label>
+                                    <input asp-for="FooterAddressToUpdate.Address" type="text" class="form-control" id="Address">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="Phone">Telefon</label>
+                                    <input asp-for="FooterAddressToUpdate.Phone" type="text" class="form-control" id="Phone">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="Email">E-Mail</label>
+                                    <input asp-for="FooterAddressToUpdate.Email" type="text" class="form-control" id="Email">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="Description">Açıklama</label>
+                                    <input asp-for="FooterAddressToUpdate.Description" type="text" class="form-control" id="Description">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Adresi Kaydet</button>
+                            </form>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+}
+

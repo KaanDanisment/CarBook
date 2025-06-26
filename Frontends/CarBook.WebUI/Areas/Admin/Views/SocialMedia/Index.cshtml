@@ -1,0 +1,66 @@
+﻿@model SocialMediasViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Sosyal Medya Hesapları Listesi</h4>
+                            <div class="table-responsive">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>İsim</th>
+                                            <th>Sil</th>
+                                            <th>Güncelle</th>
+                                            <th>Aç</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var socialMedia in Model.SocialMedias)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row">@count</th>
+                                                <td>@socialMedia.Name</td>
+                                                <td><a href="/Admin/SocialMedia/DeleteSocialMedia/@socialMedia.SocialMediaId" class="btn btn-danger">Sil</a></td>
+                                                <td><a href="/Admin/SocialMedia/UpdateSocialMedia/@socialMedia.SocialMediaId" class="btn btn-success">Güncelle</a></td>
+                                                <td><a href="#" class="btn btn-dark">Aç</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <a href="/Admin/SocialMedia/CreateSocialMedia" class="btn btn-outline-primary">Yeni Sosyla Medya Hesabı Ekle</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+

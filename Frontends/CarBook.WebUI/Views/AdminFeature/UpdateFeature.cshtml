@@ -1,0 +1,30 @@
+﻿@model UpdateFeatureViewModel
+
+@{
+    ViewData["Title"] = "UpdateFeature";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Özellik Oluştur</h4>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form asp-action="UpdateFeature" method="post">
+                            <input type="hidden" asp-for="Feature.FeatureId" />
+                            <div class="form-group mb-3">
+                                <label for="Name">Özellik Adı</label>
+                                <input asp-for="Feature.Name" value="@Model.Feature.Name" type="text" class="form-control" id="Name" placeholder="Özellik adı girin">
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Özelliği Kaydet</button>
+                        </form>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
+</div>

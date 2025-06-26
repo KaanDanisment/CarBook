@@ -1,0 +1,30 @@
+﻿@model CreatePricingDto
+@{
+    ViewData["Title"] = "CreatePricing";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Fiyat Periyodu Oluştur</h4>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form asp-action="CreatePricing" method="post">
+                            <div class="form-group mb-3">
+                                <label for="Name">Fiyat Periyodu Adı</label>
+                                <input asp-for="Name" type="text" class="form-control" id="Name" placeholder="Fiyat periyodu girin">
+                            </div>
+                           
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Fiyat Periyodunu Kaydet</button>
+                        </form>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
+</div>
+

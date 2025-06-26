@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+@await Component.InvokeAsync("_HeadUILayoutComponentPartial")
+<body>
+
+    @await Component.InvokeAsync("_NavbarUILayoutComponentPartial")
+
+    @await Component.InvokeAsync("_DefaultCoverUILayoutComponentPartial")
+
+    @await Component.InvokeAsync("_DefaultRentACarComponentPartial")
+
+    @await Component.InvokeAsync("_DefaultLatest5CarsComponentPartial")
+
+    @await Component.InvokeAsync("_AboutUsComponentPartial")
+
+    @await Component.InvokeAsync("_ServiceComponentPartial")
+
+    @await Component.InvokeAsync("_BecomeADriverComponentPartial")
+
+    @await Component.InvokeAsync("_TestimonialComponentPartial")
+
+    @await Component.InvokeAsync("_DefaultLatest3BlogsComponentPartial")
+
+    @await Component.InvokeAsync("_DefaultStatisticsComponentPartial")
+
+    @await Component.InvokeAsync("_FooterUILayoutComponentPartial")
+
+    @await Component.InvokeAsync("_ScriptUILayoutComponentPartial")
+
+</body>
+</html>

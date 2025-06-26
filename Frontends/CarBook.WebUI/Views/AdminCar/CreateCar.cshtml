@@ -1,0 +1,81 @@
+﻿@model CreateCarViewModel
+@{
+    ViewData["Title"] = "CreateCar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Araç Oluştur</h4>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form asp-action="CreateCar" method="post">
+                            <div class="form-group mb-3">
+                                <label asp-for="CarToCreate.BrandId" class="mb-3">Marka Seçiniz</label>
+                                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                                {
+                                    <span class="text-danger">Markalar yüklenirken hata oluştu.</span>
+                                }
+                                else
+                                {
+                                    <select asp-for="CarToCreate.BrandId" class="form-control" asp-items="Model.Brands">
+                                        <option value="">--Marka Seçiniz--</option>
+                                    </select>
+                                }
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Model">Model</label>
+                                <input asp-for="CarToCreate.Model" type="text" class="form-control" id="Model" placeholder="Model girin">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="CoverImageUrl">Kapak Fotoğrafı</label>
+                                <input asp-for="CarToCreate.CoverImageUrl" type="text" class="form-control" id="CoverImageUrl" placeholder="Kapak fotoğrafı linkini girin">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Km">Araç Kilometresi</label>
+                                <input asp-for="CarToCreate.Km" type="number" class="form-control" id="Km" placeholder="Kilometre bilgisi girin">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Transmission">Vites Türü</label>
+                                <select asp-for="CarToCreate.Transmission" class="form-control">
+                                    <option value="">--Vites Türü Seçiniz--</option>
+                                    <option value="Automatic">Otomatik</option>
+                                    <option value="Manual">Manuel</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Seat">Koltuk Miktarı</label>
+                                <input asp-for="CarToCreate.Seat" type="number" class="form-control" id="Seat" placeholder="Koltuk miktarı girin">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Luggage">Bagaj Hacmi</label>
+                                <small>m3 (metreküp) cinsi</small>
+                                <input asp-for="CarToCreate.Luggage" type="number" class="form-control" id="Luggage" placeholder="Bagaj hacmi girin">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Fuel">Yakıt Türü</label>
+                                <select asp-for="CarToCreate.Fuel" class="form-control">
+                                    <option value="">--Yakıt Türü Seçiniz--</option>
+                                    <option value="Diesel">Dizel</option>
+                                    <option value="Gassoline">Benzin</option>
+                                    <option value="Electric">Elektrik</option>
+                                    <option value="Hybrid">Hibrid</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="BigImageUrl">Araç Fotoğrafı</label>
+                                <input asp-for="CarToCreate.BigImageUrl" type="text" class="form-control" id="BigImageUrl" placeholder="Araç fotoğrafı linkini girin">
+                            </div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Aracı Kaydet</button>
+                        </form>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
+</div>
+

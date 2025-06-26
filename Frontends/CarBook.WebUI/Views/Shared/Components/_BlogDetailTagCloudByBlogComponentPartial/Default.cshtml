@@ -1,0 +1,20 @@
+﻿@model TagCloudsViewModel
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+    <div class="tag-widget post-tag-container mb-5 mt-5">
+        <div class="tagcloud">
+            @foreach (var tagCloud in Model.TagClouds)
+            {
+                <a href="#" class="tag-cloud-link">@tagCloud.Title</a>
+            }
+        </div>
+    </div>
+}
+

@@ -1,0 +1,92 @@
+﻿@model UpdateCarViewModel
+@{
+    ViewData["Title"] = "UpdateCar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Araç Güncelle</h4>
+                            <form asp-action="UpdateCar" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="CarToUpdate.CarId" />
+
+                                <div class="form-group mb-3">
+                                    <label asp-for="CarToUpdate.BrandId" class="mb-3">Marka Seçiniz</label>
+                                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                                    {
+                                        <span class="text-danger">Markalar yüklenirken hata oluştu.</span>
+                                    }
+                                    else
+                                    {
+                                        <select asp-for="CarToUpdate.BrandId" class="form-control" asp-items="Model.Brands">
+                                            <option value="">--Marka Seçiniz--</option>
+                                        </select>
+                                    }
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="Model">Model</label>
+                                    <input asp-for="CarToUpdate.Model" type="text" value="@Model.CarToUpdate.Model" class="form-control" id="Model" placeholder="Model girin">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="CoverImageUrl">Kapak Fotoğrafı</label>
+                                    <input asp-for="CarToUpdate.CoverImageUrl" type="text" value="@Model.CarToUpdate.CoverImageUrl" class="form-control" id="CoverImageUrl" placeholder="Kapak fotoğrafı linkini girin">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="Km">Araç Kilometresi</label>
+                                    <input asp-for="CarToUpdate.Km" type="number" value="@Model.CarToUpdate.Km" class="form-control" id="Km" placeholder="Kilometre bilgisi girin">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="Transmission">Vites Türü</label>
+                                    <select asp-for="CarToUpdate.Transmission" class="form-control">
+                                        <option value="">--Vites Türü Seçiniz--</option>
+                                        <option value="Automatic">Otomatik</option>
+                                        <option value="Manual">Manuel</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="Seat">Koltuk Miktarı</label>
+                                    <input asp-for="CarToUpdate.Seat" type="number" value="@Model.CarToUpdate.Seat" class="form-control" id="Seat" placeholder="Koltuk miktarı girin">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="Luggage">Bagaj Hacmi</label>
+                                    <small>m3 (metreküp) cinsi</small>
+                                    <input asp-for="CarToUpdate.Luggage" type="number" value="@Model.CarToUpdate.Luggage" class="form-control" id="Luggage" placeholder="Bagaj hacmi girin">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="Fuel">Yakıt Türü</label>
+                                    <select asp-for="CarToUpdate.Fuel" class="form-control">
+                                        <option value="">--Yakıt Türü Seçiniz--</option>
+                                        <option value="Diesel">Dizel</option>
+                                        <option value="Gassoline">Benzin</option>
+                                        <option value="Electric">Elektrik</option>
+                                        <option value="Hybrid">Hibrid</option>
+                                    </select>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="BigImageUrl">Araç Fotoğrafı</label>
+                                    <input asp-for="CarToUpdate.BigImageUrl" type="text" value="@Model.CarToUpdate.BigImageUrl" class="form-control" id="BigImageUrl" placeholder="Araç fotoğrafı linkini girin">
+                                </div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Aracı Güncelle</button>
+                            </form>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+}
+
+

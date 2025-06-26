@@ -1,0 +1,46 @@
+﻿@model UpdatePricingViewModel
+@{
+    ViewData["Title"] = "UpdatePricing";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Fiyat Periyodunu Güncelle</h4>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <form asp-action="UpdatePricing" method="post">
+                                <input asp-for="PricingToUpdate.PricingId" type="hidden" />
+                                <div class="form-group mb-3">
+                                    <label for="Name">Fiyat Periyodu Adı</label>
+                                    <input asp-for="PricingToUpdate.Name" type="text" class="form-control" id="Name" placeholder="Fiyat periyodu girin">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Fiyat Periyodunu Kaydet</button>
+                            </form>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+
+}
+
+

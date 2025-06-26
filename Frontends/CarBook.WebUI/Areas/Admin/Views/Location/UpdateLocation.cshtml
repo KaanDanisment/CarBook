@@ -1,0 +1,47 @@
+﻿@model UpdateLocationViewModel
+@{
+    ViewData["Title"] = "UpdateLocation";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Lokasyonu Güncelle</h4>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <form asp-action="UpdateLocation" method="post">
+                                <input asp-for="LocationToUpdate.LocationId" type="hidden" />
+                                <div class="form-group mb-3">
+                                    <label for="Name">Fiyat Periyodu Adı</label>
+                                    <input asp-for="LocationToUpdate.Name" type="text" class="form-control" id="Name">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Lokasyonu Kaydet</button>
+                            </form>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+
+}
+
+

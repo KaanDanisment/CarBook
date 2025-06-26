@@ -1,0 +1,68 @@
+﻿@model FooterAddressViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Adres Listesi</h4>
+                            <div class="table-responsive">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Adres</th>
+                                            <th>Telefon</th>
+                                            <th>E-Mail</th>
+                                            <th>Açıklama</th>
+                                            <th>Sil</th>
+                                            <th>Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var address in Model.FooterAddresses)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row">@count</th>
+                                                <td>@address.Address</td>
+                                                <td>@address.Phone</td>
+                                                <td>@address.Email</td>
+                                                <td>@address.Description</td>
+                                                <td><a href="/Admin/FooterAddress/DeleteFooterAddress/@address.FooterAddressId" class="btn btn-danger">Sil</a></td>
+                                                <td><a href="/Admin/FooterAddress/UpdateFooterAddress/@address.FooterAddressId" class="btn btn-success">Güncelle</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <a href="/Admin/FooterAddress/CreateFooterAddress" class="btn btn-outline-primary">Yeni Adres Oluştur</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

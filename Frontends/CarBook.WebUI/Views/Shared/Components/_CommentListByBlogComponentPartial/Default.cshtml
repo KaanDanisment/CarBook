@@ -1,0 +1,27 @@
+﻿@model CommentsViewModel
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+    <h3 class="mb-5">@Model.TotalCommentsCount.CommentsCount Yorum</h3>
+    <ul class="comment-list">
+        @foreach (var comment in Model.Comments)
+        {
+            <li class="comment">
+                <div class="vcard bio">
+                    <img src="/carbook-master/images/person_1.jpg" alt="Image placeholder">
+                </div>
+                <div class="comment-body">
+                    <h3>@comment.Name</h3>
+                    <div class="meta">@comment.CreatedAt.ToShortDateString()</div>
+                    <p>@comment.Description</p>
+                </div>
+            </li>
+        }
+    </ul>
+}

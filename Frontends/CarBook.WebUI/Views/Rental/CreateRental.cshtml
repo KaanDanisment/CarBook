@@ -1,0 +1,64 @@
+﻿@model CreateRentalViewModel
+@{
+    ViewData["Title"] = "CreateRental";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 block-9 mb-md-5">
+                <form class="bg-light p-5 contact-form" asp-action="CreateRental" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Adınız Soyadınız" asp-for="RentalToCreate.CustomerName">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Adresiniz" asp-for="RentalToCreate.CustomerEmail">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Telefon Numaranız" asp-for="RentalToCreate.CustomerPhoneNumber">
+                    </div>
+                    <div>
+                        <input type="hidden" asp-for="RentalToCreate.CarId" value="@Model.RentalToCreate.CarId"/>
+                        <input type="hidden" asp-for="RentalToCreate.RentDate" value="@Model.RentalToCreate.RentDate"/>
+                        <input type="hidden" asp-for="RentalToCreate.ReturnDate" value="@Model.RentalToCreate.ReturnDate"/>
+                        <input type="hidden" asp-for="RentalToCreate.RentTime" value="@Model.RentalToCreate.RentTime"/>
+                        <input type="hidden" asp-for="RentalToCreate.ReturnTime" value="@Model.RentalToCreate.ReturnTime"/>
+                        <input type="hidden" asp-for="RentalToCreate.PickupLocationId" value="@Model.RentalToCreate.PickupLocationId"/>
+                        <input type="hidden" asp-for="RentalToCreate.DropoffLocationId" value="@Model.RentalToCreate.DropoffLocationId"/>
+                        <input type="hidden" asp-for="RentalToCreate.TotalPrice" value="@Model.RentalToCreate.TotalPrice"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Aracı Kirala" class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="car-wrap rounded ftco-animate">
+                    <div class="img rounded d-flex align-items-end" style="background-image: url(CarToRental.CoverImageUrl);"></div>
+                    <div class="text">
+                        <h2 class="mb-0"><a href="car-single.html">@Model.CarToRental.Brand @Model.CarToRental.Model</a></h2>
+                        <p>Günlük @Model.CarToRental.DailyPrice TL</p>
+                        @if (Model.CarToRental.Transmission == "Automatic")
+                        {
+                            <p>Otomatik Vites</p>
+                        }
+                        else if (Model.CarToRental.Transmission == "Manuel")
+                        {
+                            <p>Manuel Vites</p>
+                        }
+                        <p class="text-danger">@Model.RentalToCreate.TotalPrice</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

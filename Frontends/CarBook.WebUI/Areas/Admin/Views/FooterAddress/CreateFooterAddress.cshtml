@@ -1,0 +1,43 @@
+﻿@model CreateFooterAddressDto
+@{
+    ViewData["Title"] = "CreateFooterAddress";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni Fiyat Periyodu Oluştur</h4>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form asp-action="CreateFooterAddress" method="post">
+                            <div class="form-group mb-3">
+                                <label for="Address">Adres</label>
+                                <input asp-for="Address" type="text" class="form-control" id="Address">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Phone">Telefon</label>
+                                <input asp-for="Phone" type="tel" class="form-control" id="Phone">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Email">E-Mail</label>
+                                <input asp-for="Email" type="email" class="form-control" id="Email">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="Description">Açıklama</label>
+                                <input asp-for="Description" type="text" class="form-control" id="Description">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Fiyat Periyodunu Kaydet</button>
+                        </form>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div>
+            <!-- end col -->
+        </div>
+    </div>
+</div>
+
+

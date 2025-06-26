@@ -1,0 +1,45 @@
+﻿@model UpdateCategoryViewModel
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Yeni Kategori Oluştur</h4>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <form asp-action="UpdateCategory" method="post">
+                                <input asp-for="CategoryToUpdate.CategoryId" type="hidden"/>
+                                <div class="form-group mb-3">
+                                    <label for="Name">Kategori Adı</label>
+                                    <input asp-for="CategoryToUpdate.Name" type="text" class="form-control" id="Name">
+                                </div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">Kategoriyi Kaydet</button>
+                            </form>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+}
+
+
+

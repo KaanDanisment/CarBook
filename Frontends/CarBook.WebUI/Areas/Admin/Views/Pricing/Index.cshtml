@@ -1,0 +1,61 @@
+﻿@model PricingViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Fiyat Periyodu Listesi</h4>
+                            <div class="table-responsive">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>İsim</th>
+                                            <th>Sil</th>
+                                            <th>Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var pricing in Model.Pricings)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row">@count</th>
+                                                <td>@pricing.Name</td>
+                                                <td><a href="/Admin/Pricing/DeletePricing/@pricing.PricingId" class="btn btn-danger">Sil</a></td>
+                                                <td><a href="/Admin/Pricing/UpdatePricing/@pricing.PricingId" class="btn btn-success">Güncelle</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <a href="/Admin/Pricing/CreatePricing" class="btn btn-outline-primary">Yeni Fiyat Periyodu Oluştur</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

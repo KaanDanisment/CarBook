@@ -1,0 +1,548 @@
+﻿@model StatisticsViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+        <!-- start page title1-->
+        <div class="row">
+            @if (!string.IsNullOrEmpty(Model.AuthorCountErroMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.AuthorCountErroMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Yazar Sayısı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0 text-white">
+                                        @Model.AuthorCount.AuthorCount
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+            @if (!string.IsNullOrEmpty(Model.AutomaticTransmissionCarsCountErroMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.AutomaticTransmissionCarsCountErroMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-success border-success">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Otomatik Vites Araç Sayısı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.AutomaticTransmissionCarsCount.AutomaticTransmissionCarsCount
+                                    </h2>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+            @if (!string.IsNullOrEmpty(Model.AvgDailyRentalPriceErroMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.AvgDailyRentalPriceErroMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-warning border-warning">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Ortalama Günlük Kiralık Araç Fiyatı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.AvgDailyRentalPrice.AvgDailyRentalPrice
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+            @if (!string.IsNullOrEmpty(Model.AvgMonthlyRentalPriceErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.AvgMonthlyRentalPriceErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-info border-info">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Ortalama Aylık Kiralık Araç Fiyatı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.AvgMonthlyRentalPrice.AvgMonthlyRentalPrice
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+        </div>
+        <!-- end page title1-->
+        <!-- start page title2-->
+        <div class="row">
+            @if (!string.IsNullOrEmpty(Model.AvgWeeklyRentalPriceErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.AvgWeeklyRentalPriceErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Ortalama Haftalık Kiralık Araç Fiyatı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0 text-white">
+                                        @Model.AvgWeeklyRentalPrice.AvgWeeklyRentalPrice
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+            @if (!string.IsNullOrEmpty(Model.BlogCountErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.BlogCountErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-success border-success">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Blog Sayısı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.BlogCount.BlogCount
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+
+            @if (!string.IsNullOrEmpty(Model.BrandCountErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.BrandCountErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-warning border-warning">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <span class="badge badge-soft-light float-right">Marka Sayısı</span>
+                                <h5 class="card-title mb-0 text-white">Expenses</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.BrandCount.BrandCount
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+
+            @if (!string.IsNullOrEmpty(Model.CarCountErrroMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.CarCountErrroMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-info border-info">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Araç Sayısı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.CarCount.CarCount
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+        </div>
+        <!-- end page title2-->
+        <!-- start page title3-->
+        <div class="row">
+            @if (!string.IsNullOrEmpty(Model.CarsCountWithLessThan1000KmErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.CarsCountWithLessThan1000KmErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">100 Km'den Düşük Araç Sayısı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0 text-white">
+                                        @Model.CarsCountWithLessThan1000Km.CarsCountWithLessThan1000Km
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+
+            @if (!string.IsNullOrEmpty(Model.ElectricCarsCountErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.ElectricCarsCountErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-success border-success">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Elektrikli Araç Sayısı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.ElectricCarsCount.ElectricCarsCount
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+
+            @if (!string.IsNullOrEmpty(Model.GasolineOrDieselCarsCountErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.GasolineOrDieselCarsCountErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-warning border-warning">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Benzinli veya Dizel Araç Sayısı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.GasolineOrDieselCarsCount.GasolineOrDieselCarsCount
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+
+            @if (!string.IsNullOrEmpty(Model.LocationCountErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.LocationCountErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-info border-info">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Konum Sayısı</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.LocationCount.LocationCount
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+        </div>
+        <!-- end page title3-->
+        <!-- start page title4-->
+        <div class="row">
+            @if (!string.IsNullOrEmpty(Model.TheBlogWithTheMostCommentsErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.TheBlogWithTheMostCommentsErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">En Çok Yorum Alan Blog</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0 text-white">
+                                        @Model.TheBlogWithTheMostComments.BlogTitle
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+
+            @if (!string.IsNullOrEmpty(Model.TheBrandWithMostCarsErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.TheBrandWithMostCarsErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-success border-success">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">En Çok Araca Sahip Marka</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.TheBrandWithMostCars.BrandName
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+
+            @if (!string.IsNullOrEmpty(Model.TheHighestPricedCarForDailyRentalErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.TheHighestPricedCarForDailyRentalErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-warning border-warning">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Günlük Kiralamada En Pahalı Araç</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.TheHighestPricedCarForDailyRental.BrandName
+                                    </h2>
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.TheHighestPricedCarForDailyRental.CarModel
+                                    </h2>
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.TheHighestPricedCarForDailyRental.Amount
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+
+
+            @if (!string.IsNullOrEmpty(Model.TheLowestPricedCarForDailyRentalErrorMessage))
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-primary border-primary">
+                        <div class="card-body">
+                            <div class="alert alert-danger" role="alert">
+                                @Model.TheLowestPricedCarForDailyRentalErrorMessage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-warning border-warning">
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-white">Günlük Kiralamada En Pahalı Araç</h5>
+                            </div>
+                            <div class="row d-flex align-items-center mb-4">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.TheLowestPricedCarForDailyRental.BrandName
+                                    </h2>
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.TheLowestPricedCarForDailyRental.CarModel
+                                    </h2>
+                                    <h2 class="d-flex align-items-center text-white mb-0">
+                                        @Model.TheLowestPricedCarForDailyRental.Amount
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col-->
+            }
+        </div>
+        <!-- end page title4-->
+
+    </div>
+</div>
+

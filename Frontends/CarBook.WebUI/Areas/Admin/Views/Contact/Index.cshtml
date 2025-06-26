@@ -1,0 +1,60 @@
+﻿@model ContactViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class=" container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Basic Data Table</h4>
+
+                            <table id="basic-datatable" class="table dt-responsive nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Gönderen</th>
+                                        <th>Konu</th>
+                                        <th>E-Mail</th>
+                                        <th>Gönderilme Tarih</th>
+                                        <th>Mesaj</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var contact in Model.Contacts)
+                                    {
+                                        <tr>
+                                            <td>@contact.Name</td>
+                                            <td>@contact.Subject</td>
+                                            <td>@contact.Email</td>
+                                            <td>@contact.SendDate.ToShortDateString()</td>
+                                            <td>@contact.Message</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

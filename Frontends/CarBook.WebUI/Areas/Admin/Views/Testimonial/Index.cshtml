@@ -1,0 +1,67 @@
+﻿@model TestimonialViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Referans Listesi</h4>
+                            <div class="table-responsive">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>İsim</th>
+                                            <th>Başlık</th>
+                                            <th>Yorum</th>
+                                            <th>Resim Url</th>
+                                            <th>Sil</th>
+                                            <th>Güncelle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var testimonial in Model.Testimonials)
+                                        {
+                                            <tr>
+                                                <td><img src="@testimonial.ImageUrl" alt="@testimonial.Name" width="50" height="50" /></td>
+                                                <td>@testimonial.Name</td>
+                                                <td>@testimonial.Title</td>
+                                                <td>@testimonial.Comment</td>
+                                                <td><a href="/Admin/Testimonial/DeleteTestimonial/@testimonial.TestimonialId" class="btn btn-danger">Sil</a></td>
+                                                <td><a href="/Admin/Testimonial/UpdateTestimonial/@testimonial.TestimonialId" class="btn btn-success">Güncelle</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <a href="/Admin/Testimonial/CreateTestimonial" class="btn btn-outline-primary">Yeni Referans Oluştur</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+

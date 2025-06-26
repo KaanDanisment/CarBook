@@ -1,0 +1,33 @@
+﻿@model BlogViewModel
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @Model.ErrorMessage
+    </div>
+}
+else
+{
+    <div class="col-md-8 ftco-animate">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        <h2 class="mb-3">@Model.Blog.Title</h2>
+        <p>@Model.Blog.Description</p>
+
+
+        @await Component.InvokeAsync("_BlogDetailTagCloudByBlogComponentPartial", new { id = Model.Blog.BlogId })
+
+        @await Component.InvokeAsync("_BlogDetailAuthorAboutComponentPartial", new { AuthorName = Model.Blog.AuthorName, AuthorDescription = Model.Blog.AuthorDescription, AuthorImageUrl = Model.Blog.AuthorImageUrl })
+
+
+        <div class="pt-5 mt-5">
+            @await Component.InvokeAsync("_CommentListByBlogComponentPartial", new { id = Model.Blog.BlogId })
+
+            @await Component.InvokeAsync("_CreateCommentComponentPartial", new { id = Model.Blog.BlogId })
+        </div>
+    </div>
+}

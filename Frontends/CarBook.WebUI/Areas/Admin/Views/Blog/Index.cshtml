@@ -1,0 +1,70 @@
+﻿@model BlogsViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="alert alert-danger" role="alert">
+                @Model.ErrorMessage
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Banner Listesi</h4>
+                            <div class="table-responsive">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Başlık</th>
+                                            <th>Yazar</th>
+                                            <th>Kategori</th>
+                                            <th>Tarih</th>
+                                            <th>Sil</th>
+                                            <th>Blog</th>
+                                            <th>Yorumlar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var blog in Model.Blogs)
+                                        {
+                                            count++;
+                                            <tr>
+                                                <th scope="row">@count</th>
+                                                <td>@blog.Title</td>
+                                                <td>@blog.AuthorName</td>
+                                                <td>@blog.CategoryName</td>
+                                                <td>@blog.CreatedDate</td>
+                                                <td><a href="/Admin/Blog/DeleteBlog/@blog.BlogId" class="btn btn-danger">Sil</a></td>
+                                                <td><a href="/Blog/BlogDetail/@blog.BlogId" class="btn btn-success">Blogu Aç</a></td>
+                                                <td><a href="/Admin/Comment/Index/@blog.BlogId" class="btn btn-dark">Yorumlar</a></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- end card-body-->
+                    </div>
+                    <!-- end card -->
+
+                </div>
+                <!-- end col -->
+            </div>
+        </div>
+    </div>
+}
